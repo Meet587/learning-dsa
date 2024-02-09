@@ -51,6 +51,6 @@ int main()
     }
 
     delete[] p; // c++ dealocating memory in heap
-    free(p);    // c dealocating memory in heap
+    // free(p);    // c dealocating memory in heap
     return 0;
 }

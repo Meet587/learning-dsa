@@ -43,6 +43,22 @@ void Insert(struct Array *arr, int index, int x)
     }
 }
 
+int Delete(struct Array *arr, int index)
+{
+    int x = 0;
+    int i = 0;
+    if (arr->length >= index && index >= 0)
+    {
+        x = arr->A[index];
+        for (i = index; i < arr->length; i++)
+        {
+            arr->A[i] = arr->A[i + 1];
+        }
+        arr->length--;
+    }
+    return x;
+}
+
 int main()
 {
     struct Array arr = {{2, 3, 4, 5, 6}, 10, 5};
@@ -63,7 +79,8 @@ int main()
     // }
     // arr.length = n;
 
-    Insert(&arr, 2, 10);
+    printf("%d \n", Delete(&arr, 0));
+    // Insert(&arr, 2, 10);
     // Append(&arr, 9);
     Display(arr);
 

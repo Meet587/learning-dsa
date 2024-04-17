@@ -138,7 +138,7 @@ public:
 
         return arr3;
     };
-    
+
     Array *Difference(Array arr2)
     {
         int i, j, k;
@@ -371,7 +371,7 @@ void Array::Rearrange()
 
 int main()
 {
-    struct Array *arr1;
+    Array *arr1;
     int ch, sz;
     int x, index;
 

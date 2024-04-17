@@ -1,0 +1,53 @@
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+
+int intToBit(int n)
+{
+    if (n < 0)
+    {
+        cout << "please provide positive number" << endl;
+        cin >> n;
+    }
+    int ans = 0;
+    int i = 0;
+    while (n != 0)
+    {
+        int bit = n & 1;
+
+        ans = (bit * pow(10, i)) + ans; // reverse the digits 123 =>
+        n = n >> 1;
+        i++;
+    }
+    cout << ans << " answer" << endl;
+    return ans;
+}
+
+int bitToInt(int n)
+{
+    int i = 0;
+    int ans = 0;
+    while (n != 0)
+    {
+        int digit = n % 10;
+        if (digit == 1)
+        {
+            ans = ans + pow(2, i);
+        }
+        n = n / 10;
+        i++;
+    }
+    cout << ans << " answer" << endl;
+    return ans;
+}
+
+
+int main()
+{
+    int n;
+    cin >> n;
+    // bitToInt(n);
+    intToBit(n);
+    return 0;
+}

@@ -33,20 +33,47 @@ void explainVector()
     v.emplace_back(2);
 
     vector<pair<int, int>> vec;
-    // to add element in pair form
-    vec.push_back({1, 2});
+    // // to add element in pair form
+    vec.push_back({11, 2});
     vec.emplace_back(1, 2);
 
-    vector<int> v(5, 100);
+    // vector<int> v(5, 100);
 
-    vector<int> v(5);
+    // vector<int> v(5);
 
     vector<int> v1(5, 20);
     vector<int> v2(v1);
+
+    cout << v1[3] << endl;
 }
 
+void explainVectorIterator()
+{
+    vector<int> v(5, 20);
+    vector<int>::iterator it = v.begin();
+
+    it++;
+    cout << *(it) << " ";
+
+    it = it + 2;
+    cout << *(it) << " ";
+
+    vector<int>::iterator it = v.end();
+    // vector<int>::iterator it = v.rend();
+    // vector<int>::iterator it = v.rbegin();
+}
+
+void explainSets()
+{
+    set<int> st;
+
+
+ 
+}
 int main()
 {
-    explainPairs();
+    // explainPairs();
+    // explainVector();
+    explainVectorIterator();
     return 0;
 }

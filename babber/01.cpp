@@ -1,4 +1,5 @@
 #include <iostream>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -21,8 +22,8 @@ int reverse(int x)
 
 int main()
 {
-    int a = 0;
-    int b = 1;
+    int a = 12;
+    int b = 3;
 
     // cout << (a & b) << endl;
     // cout << (a | b) << endl;
@@ -51,6 +52,13 @@ int main()
     // }
     // cout << " prime";
     // cout << a;
+    int ans = 1;
+    for (int i = 1; i <= b; i++)
+    {
+        ans = ans * a;
+    }
+    // ans = pow(12, 3);
+    cout << ans;
 
-    reverse(-123);
+    // reverse(-123);
 }

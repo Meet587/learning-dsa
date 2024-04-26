@@ -12,6 +12,7 @@
     "functional": "cpp",
     "tuple": "cpp",
     "ostream": "cpp",
-    "cmath": "cpp"
+    "cmath": "cpp",
+    "numeric": "cpp"
   }
 }

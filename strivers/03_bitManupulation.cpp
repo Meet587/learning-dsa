@@ -29,7 +29,7 @@ string reversString(string x)
 string convert2Binary(int n)
 {
     string res = "";
-    while (n > 0)
+    while (n != 0)
     {
         if (n % 2 == 1)
             res += "1";
@@ -109,11 +109,11 @@ int main()
     // bool ans;
     // ans = IsSet(13, 2);
     // cout << ans << endl;
-    a = ClearTheBit(9, 2);
-    cout << CountSetBits(12) << endl;
-    cout << CountSetBits(13) << endl;
-    cout << CountSetBits(47) << endl;
-    cout << CountSetBits(33) << endl;
+    // a = ClearTheBit(9, 2);
+    cout << convert2Binary(-12) << endl;
+    cout << convert2Binary(13) << endl;
+    cout << convert2Binary(47) << endl;
+    cout << convert2Binary(33) << endl;
 
-    return 1;
+    return 0;
 }

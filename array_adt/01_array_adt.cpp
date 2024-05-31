@@ -79,10 +79,11 @@ int main()
     // }
     // arr.length = n;
 
-    printf("%d \n", Delete(&arr, 0));
+    scanf("%d", &arr.size);
+    printf("%d \n", arr.size);
     // Insert(&arr, 2, 10);
     // Append(&arr, 9);
-    Display(arr);
+    // Display(arr);
 
     return 0;
 }

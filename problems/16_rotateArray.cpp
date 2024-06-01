@@ -51,12 +51,12 @@ int main()
         nums.push_back(arr[i]);
     }
 
-    // rotate(nums, 3);
-    cout << findDuplicate(nums) << endl;
+    // cout << findDuplicate(nums) << endl;
 
     for (int i = 0; i < nums.size() - 1; i++)
     {
-        // cout << nums[i] << endl;
+        cout << nums[i] << endl;
     }
+    // rotate(nums, 3);
     return 0;
 }

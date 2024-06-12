@@ -370,25 +370,51 @@ void Marge(struct Node *p, struct Node *q)
     }
 }
 
+bool isLoop(struct Node *f)
+{
+    struct Node *p, *q;
+    p = q = f;
+
+    do
+    {
+        p = p->next;
+        q = q->next;
+        q = q ? q->next : q;
+
+        cout << p->data << " " << q->data << endl;
+    } while (p && q && p != q);
+
+    if (p == q)
+        return 1;
+    else
+        return 0;
+}
+
 int main()
 {
-    struct Node *temp;
+    struct Node *t1, *t2;
 
     // int a[] = {3, 5, 7, 10, 25, 8, 32, 2};
-    // int b[] = {10, 20, 30, 40, 50};
+    int b[] = {10, 20, 30, 40, 50};
 
-    int a[] = {5, 15, 25, 35, 45, 55};
-    int b[] = {10, 20, 30, 40, 50, 60};
+    // int a[] = {5, 15, 25, 35, 45, 55};
+    // int b[] = {10, 20, 30, 40, 50, 60};
 
     // for (int i = 0; i < 6; i++)
     // {
     //     InsertLast(a[i]);
     // }
 
-    create(a, 6);
-    create2(b, 6);
+    create(b, 5);
+    // create2(b, 6);
 
-    Marge(first, second);
+    t1 = first->next->next;
+    t2 = first->next->next->next->next;
+    t2->next = t1;
+
+    cout << isLoop(first) << endl;
+
+    // Marge(first, second);
 
     // Concat(first, second);
 
@@ -416,9 +442,9 @@ int main()
     // else
     //     cout << "key is not found" << endl;
 
-    cout << "First list " << endl;
-    Display(third);
-    cout << "\n\n";
+    // cout << "First list " << endl;
+    // Display(third);
+    // cout << "\n\n";
 
     // cout << "Second list " << endl;
     // Display(second);

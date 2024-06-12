@@ -15,6 +15,11 @@
     "cmath": "cpp",
     "numeric": "cpp",
     "deque": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "new": "cpp",
+    "*.tcc": "cpp",
+    "memory_resource": "cpp",
+    "limits": "cpp",
+    "type_traits": "cpp"
   }
 }

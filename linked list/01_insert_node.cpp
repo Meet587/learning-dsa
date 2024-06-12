@@ -248,20 +248,72 @@ void freeLinkedList(struct Node *head)
     }
 }
 
+void Reverse1(struct Node *p)
+{
+    int *A, i = 0;
+    struct Node *q = p;
+    A = (int *)malloc(sizeof(int) * (count(p)));
+
+    while (q != NULL)
+    {
+        A[i] = q->data;
+        q = q->next;
+        i++;
+    }
+    q = p;
+    i--;
+    while (q != NULL)
+    {
+        q->data = A[i];
+        q = q->next;
+        i--;
+    }
+}
+
+void Reverse2(struct Node *p)
+{
+    struct Node *q = NULL, *r = NULL;
+
+    while (p != NULL)
+    {
+        r = q;
+        q = p;
+        p = p->next;
+        q->next = r;
+    }
+    first = q;
+}
+
+void Reverse3(struct Node *q, struct Node *p)
+{
+    if (p)
+    {
+        Reverse3(p, p->next);
+        p->next = q;
+    }
+    else
+    {
+        first = q;
+    }
+}
+
 int main()
 {
     struct Node *temp;
 
-    // int a[] = {3, 5, 7, 10, 25, 8, 32, 2};
-    int a[] = {10, 20, 30, 30, 30, 30, 40, 40, 40, 50};
+    int a[] = {3, 5, 7, 10, 25, 8, 32, 2};
+    // int a[] = {10, 20, 30, 30, 30, 30, 40, 40, 40, 50};
 
     // for (int i = 0; i < 6; i++)
     // {
     //     InsertLast(a[i]);
     // }
 
-    create(a, 10);
-    RemoveDuplicate(first);
+    create(a, 8);
+
+    // Reverse2(first);
+    Reverse3(NULL, first);
+    // RemoveDuplicate(first);
 
     // cout << "i sorted list " << isSorted(first) << endl;
 

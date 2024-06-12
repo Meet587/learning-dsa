@@ -6,7 +6,7 @@ struct Node
 {
     int data;
     struct Node *next;
-} *first = NULL, *last = NULL;
+} *first = NULL, *last = NULL, *second = NULL, *third = NULL;
 
 void create(int A[], int n)
 {
@@ -17,6 +17,26 @@ void create(int A[], int n)
     first->data = A[0];
     first->next = NULL;
     last = first;
+
+    for (i = 1; i < n; i++)
+    {
+        t = (struct Node *)malloc(sizeof(struct Node));
+        t->data = A[i];
+        t->next = NULL;
+        last->next = t;
+        last = t;
+    }
+}
+
+void create2(int A[], int n)
+{
+    int i;
+    struct Node *t, *last;
+
+    second = (struct Node *)malloc(sizeof(struct Node));
+    second->data = A[0];
+    second->next = NULL;
+    last = second;
 
     for (i = 1; i < n; i++)
     {
@@ -297,22 +317,83 @@ void Reverse3(struct Node *q, struct Node *p)
     }
 }
 
+void Concat(struct Node *p, struct Node *q)
+{
+    third = p;
+    while (p->next != NULL)
+    {
+        p = p->next;
+    }
+    p->next = q;
+}
+
+void Marge(struct Node *p, struct Node *q)
+{
+    struct Node *last;
+    if (p->data < q->data)
+    {
+        third = last = p;
+        p = p->next;
+        last->next = NULL;
+    }
+    else
+    {
+        third = last = q;
+        q = q->next;
+        last->next = NULL;
+    }
+
+    while (p != NULL && q != NULL)
+    {
+        if (p->data < q->data)
+        {
+            last->next = p;
+            last = p;
+            p = p->next;
+            last->next = NULL;
+        }
+        else
+        {
+            last->next = q;
+            last = q;
+            q = q->next;
+            last->next = NULL;
+        }
+    }
+    if (p != NULL)
+    {
+        last->next = p;
+    }
+    if (q != NULL)
+    {
+        last->next = q;
+    }
+}
+
 int main()
 {
     struct Node *temp;
 
-    int a[] = {3, 5, 7, 10, 25, 8, 32, 2};
-    // int a[] = {10, 20, 30, 30, 30, 30, 40, 40, 40, 50};
+    // int a[] = {3, 5, 7, 10, 25, 8, 32, 2};
+    // int b[] = {10, 20, 30, 40, 50};
+
+    int a[] = {5, 15, 25, 35, 45, 55};
+    int b[] = {10, 20, 30, 40, 50, 60};
 
     // for (int i = 0; i < 6; i++)
     // {
     //     InsertLast(a[i]);
     // }
 
-    create(a, 8);
+    create(a, 6);
+    create2(b, 6);
+
+    Marge(first, second);
+
+    // Concat(first, second);
 
     // Reverse2(first);
-    Reverse3(NULL, first);
+    // Reverse3(NULL, first);
     // RemoveDuplicate(first);
 
     // cout << "i sorted list " << isSorted(first) << endl;
@@ -335,6 +416,13 @@ int main()
     // else
     //     cout << "key is not found" << endl;
 
-    Display(first);
+    cout << "First list " << endl;
+    Display(third);
+    cout << "\n\n";
+
+    // cout << "Second list " << endl;
+    // Display(second);
+    // cout << "\n\n";
+
     return 0;
 }

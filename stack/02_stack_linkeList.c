@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct Node
 {
-    char data;
+    int data;
     struct Node *next;
 } *top = NULL;
 
-void push(char x)
+void push(int x)
 {
     struct Node *t = (struct Node *)malloc(sizeof(struct Node));
 
@@ -21,9 +22,9 @@ void push(char x)
     }
 }
 
-char pop()
+int pop()
 {
-    char x = -1;
+    int x = -1;
     if (top == NULL)
         printf("stack is empty \n");
     else
@@ -68,19 +69,96 @@ int isBalanced(char *exp)
         return 0;
 }
 
+int pre(char x)
+{
+    if (x == '+' || x == '-')
+        return 1;
+    else if (x == '*' || x == '/')
+        return 2;
+    return 0;
+}
+
+int isOperand(char x)
+{
+    if (x == '+' || x == '-' || x == '*' || x == '/')
+        return 0;
+    return 1;
+}
+
+char *intToPost(char *infix)
+{
+    int i = 0, j = 0;
+    char *postfix;
+    int len = strlen(infix);
+    postfix = (char *)malloc((len + 2) * sizeof(char));
+
+    while (infix[i] != '\0')
+    {
+        if (isOperand(infix[i]))
+            postfix[j++] = infix[i++];
+        else
+        {
+            if (pre(infix[i]) > pre(top->data))
+                push(infix[i++]);
+            else
+            {
+                postfix[j++] = pop();
+            }
+        }
+    }
+    while (top != NULL)
+    {
+        postfix[j++] = pop();
+    }
+    postfix[j] = '\0';
+    return postfix;
+}
+
+int Eval(char *postfix)
+{
+    int i = 0;
+    int x1, x2, r = 0;
+    for (i = 0; postfix[i] != '\0'; i++)
+    {
+        if (isOperand(postfix[i]))
+            push(postfix[i] - '0');
+        else
+        {
+            x2 = pop();
+            x1 = pop();
+            switch (postfix[i])
+            {
+            case '+':
+                r = x1 + x2;
+                break;
+            case '-':
+                r = x1 - x2;
+                break;
+            case '*':
+                r = x1 * x2;
+                break;
+            case '/':
+                r = x1 / x2;
+                break;
+            }
+            push(r);
+        }
+    }
+    return top->data;
+}
+
 int main()
 {
-    // push(10);
-    // push(20);
-    // push(30);
-    // push(40);
-    // push(50);
 
-    char *exp = "((a+b)*(c-d))";
+    // char *infix = "a+b*c-d*e";
+    // push('#');
+
+    // char *postfix = intToPost(infix);
+    char *postfix = "234*+82/-";
 
     // Display();
 
-    printf("%d ", isBalanced(exp));
+    printf("%d ", Eval(postfix));
 
     return 0;
 }

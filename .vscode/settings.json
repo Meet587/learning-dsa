@@ -20,6 +20,7 @@
     "*.tcc": "cpp",
     "memory_resource": "cpp",
     "limits": "cpp",
-    "type_traits": "cpp"
+    "type_traits": "cpp",
+    "queue.h": "c"
   }
 }

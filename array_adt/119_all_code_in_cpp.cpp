@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -369,17 +370,221 @@ void Array::Rearrange()
     }
 }
 
+void findUnion(int arr1[], int arr2[], int n, int m)
+{
+    int p = 0, q = 0;
+    int len1 = n;
+    int len2 = m;
+
+    vector<int> temp;
+
+    while (p < len1 && q < len2)
+    {
+        if (arr1[p] < arr2[q])
+        {
+            if (temp.size() == 0 || temp.back() != arr1[p])
+            {
+                temp.push_back(arr1[p]);
+            }
+            p++;
+        }
+        if (arr1[p] > arr2[q])
+        {
+
+            if (temp.size() == 0 || temp.back() != arr2[q])
+            {
+                temp.push_back(arr2[q]);
+            }
+            q++;
+        }
+        if (arr1[p] == arr2[q])
+        {
+            temp.push_back(arr2[q]);
+            p++;
+            q++;
+        }
+    }
+
+    while (p < len1)
+    {
+        if (temp.back() != arr1[p])
+        {
+            temp.push_back(arr1[p]);
+        }
+        p++;
+    }
+    while (q < len2)
+    {
+        if (temp.back() != arr2[q])
+        {
+            temp.push_back(arr2[q]);
+        }
+        q++;
+    }
+
+    for (auto it : temp)
+    {
+        cout << it << " ";
+    }
+
+    // return temp;
+}
+
+int missingNumber(vector<int> &nums)
+{
+    int len = nums.size();
+
+    vector<int> arr(len + 1, 0);
+
+    cout << arr.size() << endl;
+    for (int i = 0; i < len; i++)
+    {
+        arr[nums[i]] = 1;
+    }
+
+    for (int i = 0; i < len; i++)
+    {
+        if (arr[i] == 0)
+            return i;
+    }
+
+    return 0;
+}
+
+void lenOfLongSubarr(int A[], int N, int K)
+{
+    // Complete the function
+    // vector<int>res;
+    // int maxLen = 0;
+    // map<int, int> preSumMap;
+    // int sum = 0;
+
+    // for (int i = 0; i < N; i++)
+    // {
+    //     sum += A[i];
+    //     if (sum == K)
+    //     {
+    //         maxLen = max(maxLen, i + 1);
+    //     }
+    //     int rem = sum - K;
+    //     if (preSumMap.find(rem) != preSumMap.end())
+    //     {
+    //         int len = i - preSumMap[rem];
+    //         maxLen = max(maxLen, len);
+    //     }
+    //     if (preSumMap.find(sum) == preSumMap.end())
+    //     {
+    //         preSumMap[sum] = i;
+    //     }
+    // }
+
+    int left = 0, right = 0;
+    int sum = A[0];
+    int maxLen = 0;
+
+    while (right < N)
+    {
+        while (left <= right && sum > K)
+        {
+            sum -= A[left];
+            left++;
+        }
+        if (sum == K)
+        {
+            maxLen = max(maxLen, right - left + 1);
+        }
+        right++;
+        if (right < N)
+            sum += A[right];
+    }
+
+    cout << "====> " << maxLen << endl;
+}
+
+vector<int> twoSum(vector<int> &nums, int target)
+{
+    vector<int> res;
+
+    // for (int i = 0; i < nums.size() - 1; i++) {
+    //     for (int j = i + 1; j < nums.size(); j++) {
+    //         if ((nums[i] + nums[j]) == target) {
+    //             res.push_back(i);
+    //             res.push_back(j);
+    //             return res;
+    //         }
+    //     }
+    // }
+
+    unordered_map<int, int> mp;
+
+    for (int i = 0; i < nums.size(); i++)
+    {
+        int remains = target - nums[i];
+        cout << "remains " << remains << endl;
+        if (mp.find(remains) != mp.end())
+        {
+            res.push_back(i);
+            // return res;
+            break;
+        }
+        mp[remains] = i;
+    }
+    for (const auto &pair : mp)
+    {
+        cout << pair.first << " " << pair.second << endl;
+    }
+
+    return res;
+}
+
+// void sortColors(vector<int> &arr)
+// {
+//     int temp1 = 0, temp2 = 0;
+//     int n = arr.size();
+//     for (int i = 0; i < n; i++)
+//     {
+//         int flag = arr[i];
+//         int j = i;
+//         do
+//         {
+//             cout << flag << " " << arr[j] << endl;
+//             j++;
+//             if (flag == arr[j])
+//             {
+//                 swap(arr[j], arr[i]);
+//             }
+//             cout << "for i ki value" << i << " = " << arr
+
+//         } while (j < n);
+//     }
+// }
+
 int main()
 {
-    Array *arr1;
-    int ch, sz;
-    int x, index;
+    // Array *arr1;
+    // int ch, sz;
+    // int x, index;
 
-    printf("Enter array size \n");
-    scanf("%d", sz);
-    arr1 = new Array(sz);
+    // printf("Enter array size \n");
+    // scanf("%d", sz);
+    // arr1 = new Array(sz);
 
-    arr1->Display();
+    // arr1->Display();
+
+    // arr1, 10, 23;
+    int arr1[10] = {-7, -11, -3, -7, 4, 15, -13, 18, -10, -10};
+    // 17 15;
+    // ans = 5;
+    int arr2[17] = {-13, 0, 6, 15, 16, 2, 15, -12, 17, -16, 0, -3, 19, -3, 2, -9, 6};
+
+    // findUnion(arr1, arr2, 10, 3);
+
+    vector<int> arr = {0, 1, 2, 2, 1, 0};
+    // int arr[6] = {1, 2, 3, 4, 5, 7};
+
+    // missingNumber(arr);
+    cout << "ans " << twoSum(arr, 9).size() << endl;
+    // sortColors(arr);
 
     return 0;
 }

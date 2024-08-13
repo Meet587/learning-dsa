@@ -166,7 +166,7 @@ void CountSort(int A[], int n)
     for (i = 0; i < max + 1; i++)
         C[i] = 0;
 
-    for (i = 0; i < n; i++) 
+    for (i = 0; i < n; i++)
         C[A[i]]++;
 
     i = 0, j = 0;
@@ -183,6 +183,26 @@ void CountSort(int A[], int n)
     }
 }
 
+void SellSort(int A[], int n)
+{
+    int gap, i, j, temp;
+    
+    for (gap = (n / 2); gap >= 1; gap /= 2)
+    {
+        for (i = gap; i < n; i++)
+        {
+            temp = A[i];
+            j = i - gap;
+            while (j >= 0 && A[j] > temp)
+            {
+                A[j + gap] = A[j];
+                j = j - gap;
+            }
+            A[j + gap] = temp;
+        }
+    }
+}
+
 int main()
 {
     int A[] = {1, 7, 3, 5, 4, 6, 8, 2, 9, 0};
@@ -194,7 +214,8 @@ int main()
     // QuickSort(A, 0, 10);
     // IMergeSort(A, 10);
     // RMergeSort(A, 0, 9);
-    CountSort(A, n);
+    // CountSort(A, n);
+    SellSort(A, n);
 
     for (int i = 0; i < n; i++)
         printf("%d ", A[i]);
